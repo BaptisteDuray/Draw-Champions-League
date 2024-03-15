@@ -76,6 +76,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             groupe.equipes = []; // Initialisation des équipes dans chaque groupe
         });
 
+        // Marquer toutes les équipes comme non sélectionnées dans les chapeaux
+        markEquipesNonSelectionnees(chapeauxArray);
+
         // Tirage des équipes
         for (let i = 0; i < chapeauxArray.length; i++) {
             const equipesDisponibles = chapeauxArray[i].filter((equipe) => !equipe.tiree);
@@ -86,24 +89,34 @@ document.addEventListener("DOMContentLoaded", async function () {
                     groupe.equipes.push(equipeTiree); // Ajout de l'équipe au groupe
                     paysDejaPresent[groupe.id].push(equipeTiree.pays); // Enregistrement du pays
                     equipeTiree.tiree = true; // Marquage de l'équipe comme déjà tirée
+                    // Marquer l'équipe comme tirée dans le chapeau correspondant
+                    const equipeIndex = chapeauxArray[i].indexOf(equipeTiree);
+                    chapeauxArray[i][equipeIndex].tiree = true;
                 }
             }
         }
     }
 
     // Fonction pour tirer une équipe aléatoire d'un chapeau
-    function tirerEquipeAleatoire(equipesDisponibles, paysGroupe) {
-        if (equipesDisponibles.length === 0) {
-            return null; // Aucune équipe disponible dans ce chapeau
-        }
+function tirerEquipeAleatoire(equipesDisponibles) {
+    if (equipesDisponibles.length === 0) {
+        return null; // Aucune équipe disponible dans ce chapeau
+    }
 
-        const equipeIndex = Math.floor(Math.random() * equipesDisponibles.length);
-        const equipeTiree = equipesDisponibles[equipeIndex];
-        if (!paysGroupe.includes(equipeTiree.pays)) {
-            return equipeTiree;
-        } else {
-            return tirerEquipeAleatoire(equipesDisponibles.filter(equipe => equipe !== equipeTiree), paysGroupe);
-        }
+    const equipeIndex = Math.floor(Math.random() * equipesDisponibles.length);
+    const equipeTiree = equipesDisponibles[equipeIndex];
+    equipesDisponibles.splice(equipeIndex, 1); // Retirer l'équipe tirée de la liste des équipes disponibles
+    return equipeTiree;
+}
+
+
+    // Fonction pour marquer les équipes comme non sélectionnées dans les chapeaux
+    function markEquipesNonSelectionnees(chapeauxArray) {
+        chapeauxArray.forEach(chapeau => {
+            chapeau.forEach(equipe => {
+                equipe.tiree = false; // Marquer toutes les équipes comme non sélectionnées
+            });
+        });
     }
 
     async function displayGroupes(groupes, chapeauxArray) {
@@ -123,7 +136,5 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
             })
         );
-
-        
     }
 });
