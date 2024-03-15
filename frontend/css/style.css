@@ -1,0 +1,80 @@
+/* CSS modifié avec responsive design */
+
+body {
+    background-image: url('https://www.lyoncapitale.fr/wp-content/uploads/2014/12/523400-ez-Logo-Ligue-des-Champions.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white; /* Couleur de police pour contraster avec le fond */
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Ajoute un voile semi-transparent sur le fond */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.group {
+    flex-basis: calc(50% - 20px); /* Largeur de chaque groupe avec espace entre */
+    margin-bottom: 20px; /* Marge en bas */
+    padding: 20px;
+    border: 2px solid #FFD700; /* Bordure dorée */
+    border-radius: 10px; /* Coins arrondis */
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Ombre dorée */
+}
+
+.group h2 {
+    color: #FFD700; /* Couleur dorée pour le titre */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 15px; /* Marge en bas */
+}
+
+.team-container {
+    list-style: none; /* Supprime les puces de liste */
+    padding-left: 0; /* Supprime le décalage à gauche */
+}
+
+.team-container li {
+    padding: 5px 0; /* Espacement intérieur */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordure basse */
+}
+
+.team-container li:last-child {
+    border-bottom: none; /* Supprimer la bordure basse pour le dernier élément */
+}
+
+.team-container strong {
+    color: #FFD700; /* Couleur dorée pour le nom de l'équipe */
+}
+
+.groupe-container { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+/* Disposition des groupes */
+#groupe-A,
+#groupe-B,
+#groupe-C,
+#groupe-D {
+    order: 1; /* Groupe A, B, C et D en haut */
+}
+
+#groupe-E,
+#groupe-F,
+#groupe-G,
+#groupe-H {
+    order: 2; /* Groupe E, F, G et H en bas */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .group {
+        flex-basis: 100%; /* Sur les écrans plus petits, chaque groupe occupe toute la largeur */
+    }
+}
