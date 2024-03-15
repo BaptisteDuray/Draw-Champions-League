@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+    text-align: center; /* Centrer le contenu horizontalement */
     background-color: rgba(0, 0, 0, 0.7); /* Ajoute un voile semi-transparent sur le fond */
     padding: 30px;
     border-radius: 10px;
@@ -16,12 +17,15 @@ body {
 }
 
 .group {
-    flex-basis: calc(50% - 20px); /* Largeur de chaque groupe avec espace entre */
+    display: inline-block; /* Afficher les groupes en ligne */
+    width: calc(12.5% - 20px); /* Largeur de chaque groupe avec espace entre */
     margin-bottom: 20px; /* Marge en bas */
-    padding: 20px;
+    margin-right: 20px; /* Marge à droite */
+    vertical-align: top; /* Alignement vertical au sommet */
+    box-sizing: border-box; /* Inclure la bordure dans la largeur */
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
     border: 2px solid #FFD700; /* Bordure dorée */
     border-radius: 10px; /* Coins arrondis */
-    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Ombre dorée */
 }
 
@@ -52,9 +56,8 @@ body {
 .groupe-container { 
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    flex-direction: row;
 }
 
 /* Disposition des groupes */
@@ -72,9 +75,24 @@ body {
     order: 2; /* Groupe E, F, G et H en bas */
 }
 
-/* Responsive design */
+/* Pour les écrans PC et TV */
+@media (min-width: 1025px) {
+    .group {
+        width: calc(25% - 40px); /* Largeur des blocs avec un espacement de 40px entre eux */
+        margin-right: 20px; /* Espacement entre les blocs */
+    }
+}
+
+
 @media (max-width: 768px) {
     .group {
-        flex-basis: 100%; /* Sur les écrans plus petits, chaque groupe occupe toute la largeur */
+        width: calc(50% - 20px); /* Sur les écrans jusqu'à 768px, chaque groupe occupe 50% de la largeur */
+    }
+}
+
+@media (max-width: 480px) {
+    .group {
+        width: calc(100% - 20px); /* Sur les écrans jusqu'à 480px, chaque groupe occupe 100% de la largeur */
+        margin-right: 0; /* Supprimer la marge à droite sur les petits écrans */
     }
 }

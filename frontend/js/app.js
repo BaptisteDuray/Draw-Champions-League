@@ -124,19 +124,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             })
         );
 
-        // Afficher les chapeaux
-        const chapeauxContainer = document.getElemenById("chapeaux-container");
-        chapeauxArray.forEach((chapeau, index) => {
-            const chapeauDiv = document.createElement("div");
-            chapeauDiv.classList.add("chapeau");
-            chapeauDiv.textContent = `Chapeau ${index + 1}`;
-            chapeauxContainer.appendChild(chapeauDiv);
-
-            chapeau.forEach((club) => {
-                const clubElement = document.createElement("div");
-                clubElement.textContent = club.nom;
-                chapeauDiv.appendChild(clubElement);
-            });
-        });
+        
     }
 });
