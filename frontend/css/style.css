@@ -75,6 +75,13 @@ body {
     order: 2; /* Groupe E, F, G et H en bas */
 }
 
+.team-logo {
+    max-width: 1.5em; 
+    height: auto; 
+    margin-right: 0.5em; 
+}
+
+
 /* Pour les écrans PC et TV */
 @media (min-width: 1025px) {
     .group {

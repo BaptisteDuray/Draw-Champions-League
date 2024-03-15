@@ -98,17 +98,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Fonction pour tirer une équipe aléatoire d'un chapeau
-function tirerEquipeAleatoire(equipesDisponibles) {
-    if (equipesDisponibles.length === 0) {
-        return null; // Aucune équipe disponible dans ce chapeau
+    function tirerEquipeAleatoire(equipesDisponibles) {
+        if (equipesDisponibles.length === 0) {
+            return null; // Aucune équipe disponible dans ce chapeau
+        }
+
+        const equipeIndex = Math.floor(Math.random() * equipesDisponibles.length);
+        const equipeTiree = equipesDisponibles[equipeIndex];
+        equipesDisponibles.splice(equipeIndex, 1); // Retirer l'équipe tirée de la liste des équipes disponibles
+        return equipeTiree;
     }
-
-    const equipeIndex = Math.floor(Math.random() * equipesDisponibles.length);
-    const equipeTiree = equipesDisponibles[equipeIndex];
-    equipesDisponibles.splice(equipeIndex, 1); // Retirer l'équipe tirée de la liste des équipes disponibles
-    return equipeTiree;
-}
-
 
     // Fonction pour marquer les équipes comme non sélectionnées dans les chapeaux
     function markEquipesNonSelectionnees(chapeauxArray) {
@@ -127,7 +126,22 @@ function tirerEquipeAleatoire(equipesDisponibles) {
                     const equipeList = document.createElement("ul");
                     groupe.equipes.forEach((equipe) => {
                         const equipeItem = document.createElement("li");
-                        equipeItem.textContent = equipe.nom;
+    
+                        // Création de l'image pour le logo de l'équipe
+                        const logo = document.createElement("img");
+                        logo.src = equipe.logo; // Assurez-vous que votre modèle de données contient une propriété 'logo' pour chaque équipe
+                        logo.alt = equipe.nom + " logo"; // Texte alternatif pour l'image
+                        logo.classList.add("team-logo"); // Ajoutez une classe CSS pour styliser l'image au besoin
+    
+                        // Création du nom de l'équipe
+                        const equipeName = document.createElement("span");
+                        equipeName.textContent = equipe.nom;
+    
+                        // Ajout du logo et du nom de l'équipe à l'élément li
+                        equipeItem.appendChild(logo);
+                        equipeItem.appendChild(equipeName);
+    
+                        // Ajout de l'élément li à la liste des équipes
                         equipeList.appendChild(equipeItem);
                     });
                     equipeContainer.appendChild(equipeList);
@@ -137,4 +151,6 @@ function tirerEquipeAleatoire(equipesDisponibles) {
             })
         );
     }
+    
+    
 });
