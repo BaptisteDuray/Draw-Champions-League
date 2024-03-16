@@ -1,5 +1,3 @@
-/* CSS modifié avec responsive design */
-
 body {
     background-image: url('https://www.lyoncapitale.fr/wp-content/uploads/2014/12/523400-ez-Logo-Ligue-des-Champions.jpg');
     background-size: cover;
@@ -81,6 +79,27 @@ body {
     margin-right: 0.5em; 
 }
 
+/* Style pour le bouton de rafraîchissement */
+.refresh-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #e01212; /* Couleur de fond dorée */
+    color: #000; /* Couleur du texte */
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.refresh-button:hover {
+    background-color: #3315df; /* Changement de couleur au survol */
+}
 
 /* Pour les écrans PC et TV */
 @media (min-width: 1025px) {
